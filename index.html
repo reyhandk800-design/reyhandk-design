@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>web untuk nowel kecilku</title>
+
+
+    <!-- GOOGLE FONTS -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* ==================================================
+           BASIC
+        ================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 20% 10%,
+                    rgba(145, 128, 111, .16),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(170, 150, 130, .10),
+                    transparent 30%
+                ),
+
+                #2f2c29;
+
+            color: #e8e0d6;
+
+            font-family:
+                "DM Sans",
+                sans-serif;
+
+            overflow-x: hidden;
+        }
+
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* ==================================================
+           FALLING DECORATIONS
+        ================================================== */
+
+        #falling-elements {
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 50;
+        }
+
+
+        .falling {
+
+            position: absolute;
+
+            top: -40px;
+
+            color: #b9a898;
+
+            opacity: 0;
+
+            animation:
+                fallDown linear forwards;
+        }
+
+
+        @keyframes fallDown {
+
+            0% {
+
+                transform:
+                    translateY(-50px)
+                    translateX(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+
+            10% {
+                opacity: .65;
+            }
+
+
+            50% {
+
+                transform:
+                    translateY(50vh)
+                    translateX(30px)
+                    rotate(160deg);
+            }
+
+
+            100% {
+
+                transform:
+                    translateY(110vh)
+                    translateX(-30px)
+                    rotate(320deg);
+
+                opacity: 0;
+            }
+        }
+
+
+
+        /* ==================================================
+           OPENING
+        ================================================== */
+
+        .opening {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            position: relative;
+        }
+
+
+        .opening-card {
+
+            width: min(560px, 100%);
+
+            text-align: center;
+
+            padding: 55px 30px;
+
+            background:
+                rgba(70, 65, 60, .72);
+
+            border:
+                1px solid rgba(210, 195, 180, .16);
+
+            border-radius: 35px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.25);
+
+            backdrop-filter: blur(10px);
+
+            animation:
+                openingAppear 1.2s ease;
+        }
+
+
+        @keyframes openingAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(.96);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        .snoopy-opening {
+
+            width: 135px;
+
+            max-width: 55%;
+
+            margin-bottom: 20px;
+
+            animation:
+                snoopyFloat 4s ease-in-out infinite;
+        }
+
+
+        @keyframes snoopyFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(-2deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-9px)
+                    rotate(2deg);
+            }
+        }
+
+
+        .opening-small {
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            color: #b7a89b;
+
+            margin-bottom: 15px;
+        }
+
+
+        .opening h1 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(38px, 7vw, 68px);
+
+            font-weight: 400;
+
+            color: #eee5da;
+
+            margin-bottom: 15px;
+        }
+
+
+        .opening p {
+
+            max-width: 420px;
+
+            margin: auto;
+
+            line-height: 1.8;
+
+            color: #bcb2a8;
+
+            font-size: 14px;
+        }
+
+
+        .open-button {
+
+            margin-top: 30px;
+
+            border: none;
+
+            padding:
+                14px 28px;
+
+            border-radius: 100px;
+
+            background: #b29f8d;
+
+            color: #302c29;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform .3s ease,
+                background .3s ease,
+                box-shadow .3s ease;
+        }
+
+
+        .open-button:hover {
+
+            transform:
+                translateY(-4px);
+
+            background: #c0ad9b;
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,.2);
+        }
+
+
+
+        /* ==================================================
+           MAIN
+        ================================================== */
+
+        .main {
+
+            display: none;
+
+            width: min(1050px, 92%);
+
+            margin: auto;
+
+            padding:
+                80px 0 120px;
+        }
+
+
+        .main.show {
+
+            display: block;
+
+            animation:
+                mainAppear 1.2s ease;
+        }
+
+
+        @keyframes mainAppear {
+
+            from {
+
+                opacity: 0;
+            }
+
+            to {
+
+                opacity: 1;
+            }
+        }
+
+
+
+        /* ==================================================
+           HEADER
+        ================================================== */
+
+        .letter-header {
+
+            text-align: center;
+
+            margin-bottom: 65px;
+        }
+
+
+        .letter-header img {
+
+            width: 100px;
+
+            animation:
+                snoopyFloat 4s ease-in-out infinite;
+        }
+
+
+        .letter-header .tiny {
+
+            margin-top: 15px;
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            color: #a99a8c;
+        }
+
+
+        .letter-header h2 {
+
+            margin-top: 10px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-weight: 400;
+
+            font-size:
+                clamp(35px, 6vw, 55px);
+
+            color: #eee4d8;
+        }
+
+
+
+        /* ==================================================
+           LETTER
+        ================================================== */
+
+        .letter {
+
+            background: #e7dfd4;
+
+            color: #48423d;
+
+            border-radius: 28px;
+
+            padding:
+                clamp(28px, 6vw, 75px);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.22);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .letter::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 15px;
+
+            border:
+                1px solid rgba(110,95,80,.16);
+
+            border-radius: 20px;
+
+            pointer-events: none;
+        }
+
+
+        .letter-content {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .salutation {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-style: italic;
+
+            font-size: 28px;
+
+            margin-bottom: 30px;
+
+            color: #63594f;
+        }
+
+
+        .letter p {
+
+            font-size:
+                clamp(15px, 2vw, 17px);
+
+            line-height: 2;
+
+            margin-bottom: 25px;
+
+            color: #514b45;
+        }
+
+
+        .highlight {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-style: italic;
+
+            font-size: 24px;
+
+            text-align: center;
+
+            padding: 35px 15px;
+
+            color: #6b5b4e;
+        }
+
+
+
+        /* ==================================================
+           MEMORY SECTION
+        ================================================== */
+
+        .memories {
+
+            margin:
+                70px 0;
+
+            padding:
+                35px 20px 45px;
+
+            border-top:
+                1px solid rgba(90,75,60,.18);
+
+            border-bottom:
+                1px solid rgba(90,75,60,.18);
+        }
+
+
+        .memory-title {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .memory-title span {
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            color: #958578;
+        }
+
+
+        .memory-title h3 {
+
+            margin-top: 10px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-weight: 400;
+
+            font-size:
+                clamp(25px, 4vw, 34px);
+
+            color: #554b43;
+        }
+
+
+        .memory-title p {
+
+            margin:
+                10px auto 0;
+
+            max-width: 500px;
+
+            font-size: 13px;
+
+            color: #82776d;
+        }
+
+
+
+        /* ==================================================
+           PHOTO GRID
+        ================================================== */
+
+        .photo-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+
+            align-items: center;
+        }
+
+
+        .photo-card {
+
+            background: #f5f0e8;
+
+            padding: 8px;
+
+            box-shadow:
+                0 12px 25px rgba(70,60,50,.16);
+
+            transition:
+                transform .4s ease,
+                box-shadow .4s ease;
+
+            animation:
+                photoFloat 5s ease-in-out infinite;
+        }
+
+
+        .photo-card img {
+
+            display: block;
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1.1;
+
+            object-fit: cover;
+        }
+
+
+        .photo-card .caption {
+
+            display: block;
+
+            text-align: center;
+
+            padding:
+                8px 3px 4px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-style: italic;
+
+            font-size: 12px;
+
+            color: #76695e;
+        }
+
+
+        .photo-card:hover {
+
+            transform:
+                scale(1.08)
+                rotate(0deg)
+                translateY(-8px);
+
+            box-shadow:
+                0 20px 35px rgba(60,50,40,.24);
+
+            z-index: 5;
+        }
+
+
+        .photo-1 {
+            transform: rotate(-4deg);
+            animation-delay: 0s;
+        }
+
+        .photo-2 {
+            transform: rotate(3deg);
+            animation-delay: .5s;
+        }
+
+        .photo-3 {
+            transform: rotate(-2deg);
+            animation-delay: 1s;
+        }
+
+        .photo-4 {
+            transform: rotate(4deg);
+            animation-delay: 1.5s;
+        }
+
+        .photo-5 {
+            transform: rotate(3deg);
+            animation-delay: 2s;
+        }
+
+        .photo-6 {
+            transform: rotate(-4deg);
+            animation-delay: 2.5s;
+        }
+
+        .photo-7 {
+            transform: rotate(2deg);
+            animation-delay: 3s;
+        }
+
+        .photo-8 {
+            transform: rotate(-3deg);
+            animation-delay: 3.5s;
+        }
+
+
+        @keyframes photoFloat {
+
+            0%,
+            100% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: -6px;
+            }
+        }
+
+
+
+        /* ==================================================
+           SPECIAL MESSAGE
+        ================================================== */
+
+        .special-message {
+
+            margin:
+                70px auto;
+
+            max-width: 700px;
+
+            text-align: center;
+
+            padding:
+                40px 20px;
+        }
+
+
+        .special-message .symbol {
+
+            font-size: 28px;
+
+            color: #978575;
+
+            margin-bottom: 20px;
+        }
+
+
+        .special-message h3 {
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-weight: 400;
+
+            font-style: italic;
+
+            font-size:
+                clamp(27px, 5vw, 40px);
+
+            line-height: 1.4;
+
+            color: #5c5148;
+        }
+
+
+
+        /* ==================================================
+           MUSIC
+        ================================================== */
+
+        .music-control {
+
+            position: fixed;
+
+            right: 20px;
+
+            bottom: 20px;
+
+            z-index: 60;
+
+            width: 50px;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #a99583;
+
+            color: #342f2b;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,.25);
+
+            transition:
+                transform .3s ease;
+        }
+
+
+        .music-control:hover {
+
+            transform:
+                scale(1.08);
+        }
+
+
+        .music-control.playing {
+
+            animation:
+                musicPulse 1.5s ease-in-out infinite;
+        }
+
+
+        @keyframes musicPulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 10px 25px rgba(0,0,0,.25);
+            }
+
+            50% {
+                box-shadow:
+                    0 10px 35px rgba(180,155,130,.45);
+            }
+        }
+
+
+
+        /* ==================================================
+           ENDING
+        ================================================== */
+
+        .ending {
+
+            text-align: center;
+
+            margin-top: 80px;
+        }
+
+
+        .ending img {
+
+            width: 110px;
+
+            animation:
+                snoopyHop 3s ease-in-out infinite;
+        }
+
+
+        @keyframes snoopyHop {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-10px);
+            }
+        }
+
+
+        .ending p {
+
+            margin-top: 20px;
+
+            color: #aaa095;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-style: italic;
+
+            font-size: 18px;
+        }
+
+
+
+        /* ==================================================
+           RESPONSIVE
+        ================================================== */
+
+        @media (max-width: 800px) {
+
+            .photo-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 20px;
+            }
+
+
+            .main {
+
+                width: 94%;
+
+                padding-top: 55px;
+            }
+
+
+            .letter {
+
+                padding:
+                    35px 22px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .opening {
+
+                padding: 18px;
+            }
+
+
+            .opening-card {
+
+                padding:
+                    45px 22px;
+            }
+
+
+            .snoopy-opening {
+
+                width: 110px;
+            }
+
+
+            .letter {
+
+                border-radius: 20px;
+
+                padding:
+                    32px 18px;
+            }
+
+
+            .letter::before {
+
+                inset: 8px;
+
+                border-radius: 14px;
+            }
+
+
+            .letter p {
+
+                line-height: 1.85;
+
+                font-size: 15px;
+            }
+
+
+            .photo-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 15px;
+            }
+
+
+            .photo-card {
+
+                padding: 6px;
+            }
+
+
+            .photo-card .caption {
+
+                font-size: 10px;
+            }
+
+
+            .memories {
+
+                padding:
+                    30px 5px;
+            }
+
+
+            .music-control {
+
+                width: 45px;
+
+                height: 45px;
+
+                right: 15px;
+
+                bottom: 15px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         FALLING DECORATIONS
+    ================================================== -->
+
+    <div id="falling-elements"></div>
+
+
+
+    <!-- ==================================================
+         OPENING
+    ================================================== -->
+
+    <section
+        class="opening"
+        id="opening"
+    >
+
+        <div class="opening-card">
+
+            <img
+                src="assets/ChatGPT Image Oct 4, 2026, 01_20_28 AM.png"
+                class="snoopy-opening"
+                alt="Snoopy"
+            >
+
+
+            <div class="opening-small">
+                a little letter
+            </div>
+
+
+            <h1>
+                Untuk Noel
+            </h1>
+
+
+            <p>
+                Ada sesuatu yang ingin aku ceritakan.
+                Bukan sesuatu yang besar,
+                hanya kumpulan kata-kata kecil
+                yang ingin aku simpan untuk kamu.
+            </p>
+
+
+            <button
+                class="open-button"
+                id="openButton"
+            >
+                Klik Tombol ini ♡
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         MAIN
+    ================================================== -->
+
+    <main
+        class="main"
+        id="main"
+    >
+
+
+        <!-- HEADER -->
+
+        <header class="letter-header">
+
+            <img
+                src="assets/ChatGPT Image Oct 4, 2026, 01_20_28 AM.png"
+                alt="Snoopy"
+            >
+
+
+            <div class="tiny">
+                written with love
+            </div>
+
+
+            <h2>
+                Dear Noel,
+            </h2>
+
+        </header>
+
+
+
+        <!-- ==================================================
+             LETTER
+        ================================================== -->
+
+        <article class="letter">
+
+            <div class="letter-content">
+
+
+                <div class="salutation">
+                    Halloowww, Noelllll
+                </div>
+
+
+                <!-- TEKS PANJANG 1 -->
+
+                <p>
+                    aku tidak tahu harus mulai dari mana, tapii aku menulis ini dengan sepenuh hati,
+                    aku bisa bikin web sendiri buat orang yang aku cinta, yang aku sayang selama ini, mungkin ini banyak kurangnya
+                    dan ini pasti bakalan telat aku untuk nyampainnya ke kamu.
+                </p>
+
+
+                <p>
+                    Jadi mungkin aku akan mulai dari
+                    sesuatu yang sederhana.
+                    Terima kasih sudah menjadi seseorang
+                    yang hadir di dalam hari-hariku.
+                    Kamu selalu bikin aku bahagia, dan aku selama ini kalo kamu tau aku engga perna marah ke kamu,
+                    aku berasa seperti itu karna aku pure from deep heart setengah nyawa aku.
+                    Kamu tau enggaa sih kalau kita itu sebenernya cocok banget, aku merasakan hal ituu karna aku selalu berharap
+                    kepada tuhan supaya kamu jadi takdir ku. Aku tau, kamu pastiii sedih banget yaaaa nungguin akuu terus, pastii sangat pahit banget kalau aku kurang kabar ke kamu
+                    aku ucapin banyak banyak terimakasih ke kamu, terimakasih karna selama ini kamu selalu ada buat aku, rela mengahabiskan waktu bareng aku,
+                    terimakasih juga sudah datang ke hidup aku dan memberikan banyak kebahagiaan yang mungkin engga perna akuu bayangin sebelumnyaa.
+                    aku bersyukur banget bisa kenal sama kamu, bisa sedekat inii sama kamu, terus juga bisa jadiin kamu sebagai orang yang begitu berarti dalam hidup aku.
+                    mungkin aku enggaa selalu bisa mengungkapkan perasaan aku pakai kata kata yangg indah, tapii percaya, akuu bener bener menghargai setiap hal kecil yang kamu lakuin buat aku, bahkan hari ini kamu sudah
+                    beberapa kaliii ngirimin aku banyaaa long teks, akuu kaget, akuu jugaaa deg deg an, karna tiba tiba banget, dan aku belumm siap buat nerima semua apa yang kamu katakan ke aku. Terimakasih yaaaa
+                    udah sabar sama aku, entah dari sifat atau kelakuan aku semua kamu sabarin, terimakasih karna kamu tetap berusaha memahami aku, dengerin cerita aku, mau nemenin aku, bikin aku engga merasa sendirian, akuu selalu merasa kamu selalu adaa sama akuu.
+                    Aku tau kita bukan pasangan yang sempurna, aku masih punya banyak kekurangan dan masih banyak hal juga yang harus aku pelajari,
+                    tapii pas ada kamu, akuu selalu mau terus memperbaiki diri, bukan karna aku merasa haus menjadi sempurna, tapii karna aku mau jadi seseorang yang pantas untuk mencintai dan dicintai oleh kamu, noel.
+
+                
+                </p>
+
+
+                <p>
+                    Mungkin bagi orang lain beberapa hal
+                    yang kita lakukan terlihat biasa saja.
+                    Tapi entah kenapa, buat aku,
+                    hal-hal kecil itu sering kali menjadi
+                    bagian yang paling aku ingat.
+                </p>
+
+
+                <div class="highlight">
+                    "Kadang yang paling berharga
+                    memang bukan sesuatu yang besar,
+                    tapi seseorang yang membuat
+                    hari biasa terasa berbeda."
+                </div>
+
+
+
+                <!-- FOTO 1 - 4 -->
+
+                <section class="memories">
+
+                    <div class="memory-title">
+
+                        <span>
+                            little memories
+                        </span>
+
+                        <h3>
+                            Beberapa momen kecil kita
+                        </h3>
+
+                        <p>
+                            Momen sederhana yang
+                            selalu inget dan aku simpan.
+                        </p>
+
+                    </div>
+
+
+                    <div class="photo-grid">
+
+
+                        <div class="photo-card photo-1">
+
+                            <img
+                                src="assets/photo_6199606917949233342_y.jpg"
+                                alt="Kenangan pertama"
+                            >
+
+                            <span class="caption">
+                                awal kita pertama kali video call
+                            </span>
+
+                        </div>
+
+
+                        <div class="photo-card photo-2">
+
+                            <img
+                                src="assets/photo_6199606917949233343_x.jpg"
+                                alt="Kenangan kedua"
+                            >
+
+                            <span class="caption">
+                                titik dimana aku bersyukur bisa lihat kamu tidur bareng aku
+                            </span>
+
+                        </div>
+
+
+                        <div class="photo-card photo-3">
+
+                            <img
+                                src="assets/photo_6199606917949233344_y.jpg"
+                                alt="Kenangan ketiga"
+                            >
+
+                            <span class="caption">
+                                dimana aku semakin lihat kamu tidur aku selalu pengen bisa meet w u secepatnya (ini pas kamu dirumah sendirian)
+                            </span>
+
+                        </div>
+
+
+                        <div class="photo-card photo-4">
+
+                            <img
+                                src="assets/photo_6199606917949233356_y.jpg"
+                                alt="Kenangan keempat"
+                            >
+
+                            <span class="caption">
+                                aku screenshoot banyak karna ini spesial banget buat hidup aku, kita juga punya kenangan banyak...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- TEKS PANJANG 2 -->
+
+                <p>
+                    Ada banyak percakapan yang mungkin
+                    sudah kita lupakan. Ada candaan yang
+                    mungkin saat ini sudah tidak lucu lagi.
+                    Ada hari-hari yang berjalan begitu saja.
+                </p>
+
+
+                <p>
+                    Tapi kalau dipikir-pikir lagi,
+                    justru dari semua hal sederhana itu
+                    muncul banyak kenangan yang sekarang
+                    terasa begitu berarti.
+                </p>
+
+
+                <p>
+                    Aku suka bagaimana kita bisa tertawa
+                    karena sesuatu yang sebenarnya tidak
+                    penting. Aku suka percakapan random,
+                    cerita kecil, dan momen ketika kita
+                    hanya menikmati waktu bersama.
+                </p>
+
+
+
+                <div class="highlight">
+                    ♡
+                    <br>
+                    Dan mungkin,
+                    aku mau mengingat semuanya.
+                </div>
+
+
+
+                <!-- FOTO 5 - 8 -->
+
+                <section class="memories">
+
+                    <div class="memory-title">
+
+                        <span>
+                            more memories
+                        </span>
+
+                        <h3>
+                            Dan masih ada yang lainnya...
+                        </h3>
+
+                        <p>
+                            Karena delapan foto saja
+                            rasanya belum cukup untuk
+                            menceritakan semuanya.
+                        </p>
+
+                    </div>
+
+
+                    <div class="photo-grid">
+
+
+                        <div class="photo-card photo-5">
+
+                            <img
+                                src="assets/photo_6199606917949233357_y.jpg"
+                                alt="Kenangan kelima"
+                            >
+
+                            <span class="caption">
+                                kita menjadi konyol bersama, itu lucu walaupun tidak jelas
+                            </span>
+
+                        </div>
+
+
+                        <div class="photo-card photo-6">
+
+                            <img
+                                src="assets/photo_6199606917949233347_x.jpg"
+                                alt="Kenangan keenam"
+                            >
+
+                            <span class="caption">
+                                aku harap aku punya banyak kesempatan
+                            </span>
+
+                        </div>
+
+
+                        <div class="photo-card photo-7">
+
+                            <img
+                                src="assets/photo_6199606917949233348_y.jpg"
+                                alt="Kenangan ketujuh"
+                            >
+
+                            <span class="caption">
+                                pap pertama kamu ke aku, maaf ya aku screenshoot diem diem karna aku bener bener suka
+                            </span>
+
+                        </div>
+
+
+                        <div class="photo-card photo-8">
+
+                            <img
+                                src="assets/photo_6199606917949233341_y.jpg"
+                                alt="Kenangan kedelapan"
+                            >
+
+                            <span class="caption">
+                                entah apa yang aku selalu pikirin kalau kamu beneran pergi dari hidup aku..., selalu inget ini.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- TEKS PANJANG 3 -->
+
+                <p>
+                    Kalau suatu hari nanti kita melihat
+                    kembali semua foto ini, mungkin kita
+                    bakalan tertawa lihat betapa sederhananya
+                    momen-momen tersebut.
+                </p>
+
+
+                <p>
+                    Tapi aku harap kita tetap bisa mengingat
+                    perasaan yang ada di baliknya.
+                    Tentang bagaimana kita pernah menikmati
+                    waktu bersama, tertawa bersama,
+                    dan menciptakan cerita kita sendiri.
+                </p>
+
+
+                <p>
+                    Aku engga tau akan ada berapa banyak
+                    halaman lagi yang bisa kita tulis.
+                    Tapi kalau boleh berharap,
+                    aku ingin masih ada banyak cerita
+                    yang bisa kita tambahkan nanti.
+                </p>
+
+
+
+                <!-- SPECIAL MESSAGE -->
+
+                <section class="special-message">
+
+                    <div class="symbol">
+                        ♡
+                    </div>
+
+
+                    <h3>
+                        Terima kasih sudah menjadi
+                        bagian dari cerita yang ingin
+                        selalu aku ingat.
+                    </h3>
+
+                </section>
+
+
+
+                <!-- TEKS PENUTUP -->
+
+                <p>
+                aku juga mau berterimakasih buat semua waktu yang udah kamu luangin buat aku, setiap pesan yang kamu kirim
+                , setiap perhatian kecil yang kamu berikan, setiap obrolan gak jelas random kita, setiap tawa yang kita bagi, semua ituu sangat berarti buat Aku
+                mungkin kamu engga sadar, tapii kehadiran kamu sering kali berhasil bikin hari aku yang tadinya biasa aja jadi jauh lebih happyy, merasa beruntung punya kamu,
+                aku benar benar bersyukur bisa merasakan semua itu bareng kamu.
+                </p>
+
+                <p>
+                    maaf juga kalau selama kira bersama, aku pernah bikin kamu sedih, kecewa, overthinking, atau merasa kurang dihargai. maaf kalau kadang aku terlalu egois, terlalu banyak menuntut kamu, atau belum bisa memahami perasaan kamu dengan baik.
+                    Aku engga pernah punya niat bikin kamu ngerasa seperti itu, aku masih belajar buat jadi pasangan yang lebih baik, walaupun kita tanpa status tapii kalau suatu saat kita dipertemukan secara realtime, aku pasti bakalan jadi orang nomer satu yang selalu melihatmu dari kejauhan,
+                    dan jika aku diberi kesempatan, aku pastii mauu serius, serius lanjut ke kehidupan selanjutnya bareng kamu. Aku
+                    engga tahu kita depannya bakalan gimana, maksud aku perjalanan kita, apakah semuanya yang selalu berjalan sesuai dengan harapan kita, atau justru banyak rintangan lagii yang harus kita lewatin bersama?,
+                    tapii satu hal yang aku tau, aku selalu pengen menikmati proses apapun itu bareng kamu. Aku selalu berharap kita punya lebih banyak cerita, kenangan, dan alasan buat tertawa senyum,
+                    in another life, aku berdoa kepada tuhan aku semoga aku selalu menjadi orang yang bisa kamu cari pas kamu lagii bahagia ataupun pas dunia kamu terasa berat.
+                    Aku ingin kamu tau kalau kamu juga punya tempat buat bersandar, tempat buat bercerita, dan seseorang yang selalu berusaha untuk memahamimu
+                </p>
+
+                 <p>
+                    sekali lagi terimakasih udah jadi bagian dari hidup akuu yaaa sayangggg..., terimakasih sudah memilih aku. oiyyaaaa, akuu sudah baca kok yang kamu kirimim ituu dari sedari awal,
+                    cuman aku bukannya engga baca semua, aku baca satu persatu, bahkan dengan nada kamu, semua ituu menyentuh akuuu, akuu senengg bangettt, akuu bukan engga menghargai kamu, tapii akuu sudah merencanakan inii sedari awal kitaa jarang ada kabar dan waktuuu,
+                    kamu sudah ada kemajuan sekarang, yang dulunya kamu gamau jelasin dengan suara, malam kemaren kamu sudah mauu jelasin lewat suara kamu, akuu suka itu. dan satu hal lagii
+                    aku minta maaf yaaa perihal yang obatnya daus ituu akuu bukan niat mauu ngolok atau ngejek kamuu, cuman yaaa akuu tauu, namanyaa jugaa kamu lagii sakitt kann, sebenernyaa akuu okkaayy ajaaa, cuman terkadang akuu merasa jealous dikit,
+                    tapii aku merasa lama kelamaan menumpuk menjadi banyak, akuu sebenernya typecal egois, kalo kamu mauu tau isi hati aku, akuu gamau kamu di sentuh cowo siapapun aku atau keluarga kamu. karna aku berusaha menjaga kamu darii hal hal yangg kamu engga tahu,
+                    yang namanya orang sayang yaaaa, akuu terlalu over sih, tapii ituu sosok asli akuu, akuu egois, pendendam, selalu menumpuk rasa amarah, mangkanya akuuu takut kamuuu sakit hatii gara gara perkataan aku. selalu menghargai kamu kok...
+                </p>
+
+                <p>
+                    Jadi kalau kamu membaca ini sampai
+                    bagian paling bawah, mungkin sekarang
+                    kamu sudah tahu satu hal:
+                    aku sangat menghargai semua momen
+                    yang pernah kita punya.
+                    Aku harap jika aku diberi kesempatan lagi untuk bisa bareng hidup bahagia bareng kamu.
+                    Aku engga mau sia siakan itu,
+                    bahkan untuk sisa hidup maupun umurku
+                </p>
+
+
+                <p>
+                    Semoga nanti akan ada lebih banyak
+                    foto, lebih banyak cerita,
+                    lebih banyak tawa,
+                    dan lebih banyak halaman yang bisa
+                    kita isi bersama.
+                </p>
+
+
+                <p>
+                    Sampai saat itu tiba,
+                    simpan surat kecil ini baik-baik.
+                    Karena semua kata di dalamnya
+                    emang aku tulis buat kamu.
+                </p>
+
+                 <p>
+                    aku harap kita besok kembali komunikasi normal seperti hari hari biasa, kita baik kan yaaaa, i love uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- ENDING -->
+
+        <section class="ending">
+
+            <img
+                src="assets/ChatGPT Image Oct 4, 2026, 01_16_24 AM.png"
+                alt="Snoopy"
+            >
+
+
+            <p>
+                made especially for nowellll ♡
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==================================================
+         MUSIC
+    ================================================== -->
+
+    <audio
+        id="backgroundMusic"
+        loop
+    >
+
+        <source
+            src="assets/Paul Partohap - THANK YOU 4 LOVIN' ME (Lyric Video).mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+    <button
+        class="music-control"
+        id="musicButton"
+        aria-label="Kontrol musik"
+    >
+        ♫
+    </button>
+
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script>
+
+
+        /* ==================================================
+           OPEN LETTER
+        ================================================== */
+
+        const openButton =
+            document.getElementById(
+                "openButton"
+            );
+
+
+        const opening =
+            document.getElementById(
+                "opening"
+            );
+
+
+        const main =
+            document.getElementById(
+                "main"
+            );
+
+
+        const music =
+            document.getElementById(
+                "backgroundMusic"
+            );
+
+
+        const musicButton =
+            document.getElementById(
+                "musicButton"
+            );
+
+
+        let musicPlaying = false;
+
+
+        openButton.addEventListener(
+            "click",
+            function () {
+
+
+                opening.style.display =
+                    "none";
+
+
+                main.classList.add(
+                    "show"
+                );
+
+
+                music.play()
+                    .then(() => {
+
+                        musicPlaying = true;
+
+                        musicButton.classList.add(
+                            "playing"
+                        );
+
+                    })
+                    .catch(() => {
+
+                        /*
+                            Browser tertentu
+                            mungkin memerlukan
+                            interaksi tambahan.
+                        */
+
+                    });
+
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+
+        /* ==================================================
+           MUSIC BUTTON
+        ================================================== */
+
+        musicButton.addEventListener(
+            "click",
+            function () {
+
+                if (musicPlaying) {
+
+                    music.pause();
+
+                    musicPlaying = false;
+
+                    musicButton.classList.remove(
+                        "playing"
+                    );
+
+                }
+
+                else {
+
+                    music.play()
+                        .then(() => {
+
+                            musicPlaying = true;
+
+                            musicButton.classList.add(
+                                "playing"
+                            );
+
+                        });
+
+                }
+
+            }
+        );
+
+
+
+        /* ==================================================
+           FALLING DECORATIONS
+        ================================================== */
+
+        const fallingContainer =
+            document.getElementById(
+                "falling-elements"
+            );
+
+
+        const fallingItems = [
+
+            "♡",
+            "♡",
+            "✦",
+            "✧",
+            "·",
+            "☁"
+
+        ];
+
+
+        function createFalling() {
+
+
+            const element =
+                document.createElement(
+                    "span"
+                );
+
+
+            element.className =
+                "falling";
+
+
+            element.textContent =
+                fallingItems[
+                    Math.floor(
+                        Math.random() *
+                        fallingItems.length
+                    )
+                ];
+
+
+            element.style.left =
+                Math.random() *
+                100 +
+                "vw";
+
+
+            element.style.fontSize =
+                Math.random() *
+                12 +
+                9 +
+                "px";
+
+
+            const duration =
+                Math.random() *
+                5 +
+                6;
+
+
+            element.style.animationDuration =
+                duration +
+                "s";
+
+
+            element.style.animationDelay =
+                Math.random() *
+                1.5 +
+                "s";
+
+
+            fallingContainer.appendChild(
+                element
+            );
+
+
+            setTimeout(
+                function () {
+
+                    element.remove();
+
+                },
+
+                (duration + 2) * 1000
+
+            );
+
+        }
+
+
+        setInterval(
+            createFalling,
+            450
+        );
+
+
+
+        /* ==================================================
+           INITIAL FALLING
+        ================================================== */
+
+        for (
+            let i = 0;
+            i < 10;
+            i++
+        ) {
+
+            setTimeout(
+                createFalling,
+                i * 250
+            );
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

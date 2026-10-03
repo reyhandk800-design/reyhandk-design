@@ -1,0 +1,1279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background: #2F2D2A;
+
+    color: #E4DED5;
+
+    font-family: "DM Sans", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* ==================================================
+   COLOR PALETTE
+
+   Cream
+   Beige
+   Soft green
+   Warm brown
+
+   Tidak ada warna mencolok.
+================================================== */
+
+:root {
+
+    --cream: #2F2D2A;
+
+    --paper: #E8E1D7;
+
+    --paper-soft: #DDD5CA;
+
+    --beige: #504A44;
+
+    --green: #9A8877;
+
+    --green-soft: #6B625A;
+
+    --brown: #4A433D;
+
+    --brown-soft: #81776E;
+
+    --line: #B5A99D;
+
+    --shadow:
+        0 20px 50px rgba(0, 0, 0, 0.20);
+}
+
+
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+           rgba(154, 136, 119, 0.12)
+            transparent 23%
+        ),
+
+        radial-gradient(
+            circle at 90% 70%,
+            rgba(233, 228, 215, 0.7),
+            transparent 25%
+        );
+
+    z-index: -3;
+}
+
+
+/* ==================================================
+   CLOUDS
+================================================== */
+
+.cloud {
+
+    position: fixed;
+
+    width: 180px;
+    height: 70px;
+
+    background: rgba(255,255,255,0.35);
+
+    border-radius: 100px;
+
+    filter: blur(1px);
+
+    pointer-events: none;
+
+    z-index: -2;
+}
+
+
+.cloud::before,
+.cloud::after {
+
+    content: "";
+
+    position: absolute;
+
+    background: inherit;
+
+    border-radius: 50%;
+}
+
+
+.cloud::before {
+
+    width: 80px;
+    height: 80px;
+
+    left: 25px;
+    top: -30px;
+}
+
+
+.cloud::after {
+
+    width: 60px;
+    height: 60px;
+
+    right: 25px;
+    top: -20px;
+}
+
+
+.cloud-one {
+
+    top: 15%;
+
+    left: -80px;
+}
+
+
+.cloud-two {
+
+    right: -80px;
+
+    bottom: 15%;
+}
+
+
+/* ==================================================
+   LITTLE DECORATIONS
+================================================== */
+
+.tiny-heart {
+
+    position: fixed;
+
+    color: #a4ad99;
+
+    opacity: 0.35;
+
+    font-family: "Playfair Display", serif;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation: tinyFloat 5s ease-in-out infinite;
+}
+
+
+.heart-one {
+
+    top: 25%;
+
+    left: 8%;
+}
+
+
+.heart-two {
+
+    top: 60%;
+
+    right: 8%;
+
+    animation-delay: 1.5s;
+}
+
+
+.heart-three {
+
+    bottom: 15%;
+
+    left: 12%;
+
+    animation-delay: 2.5s;
+}
+
+
+@keyframes tinyFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+/* ==================================================
+   OPENING
+================================================== */
+
+.opening {
+
+    min-height: 100svh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 20px;
+}
+
+
+.opening-card {
+
+    width: min(500px, 100%);
+
+    text-align: center;
+
+    padding: 45px 25px;
+
+    background: rgba(255,255,255,0.38);
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    border-radius: 35px;
+
+    box-shadow: var(--shadow);
+}
+
+
+.little-label {
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: var(--brown-soft);
+
+    margin-bottom: 20px;
+}
+
+
+/* ==================================================
+   OPENING SNOOPY
+================================================== */
+
+.opening-snoopy {
+
+    width: 120px;
+
+    max-width: 40vw;
+
+    margin-bottom: 10px;
+
+    animation: snoopyFloat 4s ease-in-out infinite;
+}
+
+
+@keyframes snoopyFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-7px) rotate(2deg);
+    }
+}
+
+
+/* ==================================================
+   ENVELOPE
+================================================== */
+
+.envelope {
+
+    position: relative;
+
+    width: 210px;
+
+    height: 135px;
+
+    margin: 10px auto 28px;
+}
+
+
+.envelope-body {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #ded9cb;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 15px 25px rgba(70,65,55,0.08);
+}
+
+
+.envelope-top {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 105px solid transparent;
+
+    border-right: 105px solid transparent;
+
+    border-top: 72px solid #cfc8b7;
+
+    z-index: 2;
+}
+
+
+.envelope-heart {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 54%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 32px;
+
+    color: #77776d;
+
+    z-index: 3;
+}
+
+
+/* ==================================================
+   OPENING TITLE
+================================================== */
+
+.opening h1 {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(40px, 9vw, 60px);
+
+    font-weight: 500;
+
+    color: var(--brown);
+
+    margin-bottom: 10px;
+}
+
+
+.opening p {
+
+    color: var(--brown-soft);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    max-width: 300px;
+
+    margin: auto;
+}
+
+
+/* ==================================================
+   OPEN BUTTON
+================================================== */
+
+.open-button {
+
+    margin-top: 25px;
+
+    padding: 13px 25px;
+
+    border: 1px solid #cbd0c2;
+
+    border-radius: 100px;
+
+    background: #665C53;
+    
+    color: #E8E1D7;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.open-button:hover {
+
+    transform: translateY(-3px);
+
+    background: #75695F;
+}
+
+
+/* ==================================================
+   MAIN WEBSITE
+================================================== */
+
+.website {
+
+    display: none;
+
+    width: min(820px, 92%);
+
+    margin: auto;
+
+    padding: 80px 0 50px;
+}
+
+
+.website.show {
+
+    display: block;
+
+    animation: websiteAppear 1s ease;
+}
+
+
+@keyframes websiteAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.main-header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.header-snoopy img {
+
+    width: 100px;
+
+    margin-bottom: 15px;
+}
+
+
+.small-title {
+
+    display: block;
+
+    color: var(--brown-soft);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+}
+
+
+.main-header h2 {
+
+    max-width: 600px;
+
+    margin: auto;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(38px, 7vw, 58px);
+
+    line-height: 1.15;
+
+    font-weight: 500;
+
+    color: var(--brown);
+}
+
+
+.main-header p {
+
+    margin-top: 15px;
+
+    color: var(--brown-soft);
+
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   MUSIC PLAYER
+================================================== */
+
+.music-player {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    width: min(550px, 100%);
+
+    margin: 0 auto 35px;
+
+    padding: 13px 15px;
+
+    background: rgba(255,255,255,0.55);
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(70,65,55,0.04);
+}
+
+
+.music-note {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #6B625A;
+
+    border-radius: 13px;
+
+    color: #66705e;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+}
+
+
+.music-details {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.music-details span {
+
+    display: block;
+
+    color: var(--brown-soft);
+
+    font-size: 10px;
+
+    margin-bottom: 3px;
+}
+
+
+.music-details strong {
+
+    display: block;
+
+    color: var(--brown);
+
+    font-family: "Playfair Display", serif;
+
+    font-weight: 500;
+
+    font-size: 15px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.music-control {
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #B8A99A;
+    
+    color: #2F2D2A;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    flex-shrink: 0;
+
+    transition: 0.25s;
+}
+
+
+.music-control:hover {
+
+    transform: scale(1.06);
+}
+
+
+/* ==================================================
+   LETTER
+================================================== */
+
+.letter {
+
+    background: var(--paper);
+
+    border: 1px solid var(--line);
+
+    border-radius: 24px;
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   PAPER TOP
+================================================== */
+
+.paper-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 22px;
+
+    color: var(--green);
+}
+
+
+.paper-top div {
+
+    width: 65px;
+
+    height: 1px;
+
+    background: var(--line);
+}
+
+
+/* ==================================================
+   LETTER CONTENT
+
+   INI BAGIAN PALING PENTING.
+
+   Tidak ada fixed height.
+   Tidak ada overflow hidden.
+   Jadi tulisan bisa sepanjang apa pun.
+================================================== */
+
+.letter-content {
+
+    width: 100%;
+
+    max-width: 680px;
+
+    margin: auto;
+
+    padding:
+        25px
+        clamp(25px, 7vw, 65px)
+        70px;
+}
+
+
+/* ==================================================
+   TYPOGRAPHY
+================================================== */
+
+.letter-content p {
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 16px;
+
+    line-height: 2;
+
+    letter-spacing: 0.01em;
+
+    color: #49463f;
+
+    margin-bottom: 28px;
+}
+
+
+.dear {
+
+    font-family: "Playfair Display", serif !important;
+
+    font-size: 27px !important;
+
+    color: var(--brown) !important;
+
+    margin-bottom: 35px !important;
+}
+
+
+/* ==================================================
+   MEMORY PHOTO
+================================================== */
+
+.memory {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    width: min(590px, 100%);
+
+    margin: 50px auto;
+
+    padding: 18px;
+
+    background: #f3f0e7;
+
+    border: 1px solid var(--line);
+
+    border-radius: 8px;
+
+    transform: rotate(-1deg);
+}
+
+
+.photo {
+
+    width: 210px;
+
+    flex-shrink: 0;
+
+    padding: 8px;
+
+    background: white;
+
+    box-shadow:
+        0 10px 25px rgba(60,55,45,0.1);
+}
+
+
+.photo img {
+
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+}
+
+
+.memory-caption {
+
+    padding: 5px;
+
+    transform: rotate(1deg);
+}
+
+
+.memory-caption span {
+
+    display: block;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 17px;
+
+    color: var(--brown);
+
+    margin-bottom: 7px;
+}
+
+
+.memory-caption p {
+
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    color: var(--brown-soft);
+}
+
+
+/* ==================================================
+   CLOSING
+================================================== */
+
+.closing {
+
+    margin-top: 60px;
+
+    text-align: center;
+}
+
+
+.closing-line {
+
+    width: 80px;
+
+    height: 1px;
+
+    margin: 0 auto 35px;
+
+    background: var(--line);
+}
+
+
+.closing-text {
+
+    color: var(--brown-soft) !important;
+
+    margin-bottom: 10px !important;
+}
+
+
+.big-message {
+
+    font-family: "Playfair Display", serif !important;
+
+    font-size: 25px !important;
+
+    line-height: 1.6 !important;
+
+    color: var(--brown) !important;
+}
+
+
+.signature {
+
+    margin-top: 45px;
+
+    font-family: "Playfair Display", serif !important;
+
+    color: var(--brown-soft) !important;
+
+    line-height: 1.7 !important;
+}
+
+
+.signature strong {
+
+    color: var(--brown);
+
+    font-size: 22px;
+}
+
+
+/* ==================================================
+   PAPER BOTTOM
+================================================== */
+
+.paper-bottom {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    background: var(--paper-soft);
+
+    border-top: 1px solid var(--line);
+
+    color: var(--brown-soft);
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==================================================
+   ENDING
+================================================== */
+
+.ending {
+
+    text-align: center;
+
+    padding: 60px 0 25px;
+}
+
+
+.ending img {
+
+    width: 120px;
+
+    margin-bottom: 15px;
+}
+
+
+.ending p {
+
+    font-family: "Playfair Display", serif;
+
+    color: var(--brown-soft);
+
+    font-size: 16px;
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer {
+
+    text-align: center;
+
+    color: #aaa49a;
+
+    font-size: 10px;
+}
+
+
+/* ==================================================
+   RESPONSIVE — TABLET
+================================================== */
+
+@media (max-width: 700px) {
+
+    .website {
+
+        width: 94%;
+
+        padding-top: 60px;
+    }
+
+
+    .letter-content {
+
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+
+    .memory {
+
+        gap: 18px;
+
+        padding: 13px;
+    }
+
+
+    .photo {
+
+        width: 180px;
+    }
+}
+
+
+/* ==================================================
+   RESPONSIVE — PHONE
+================================================== */
+
+@media (max-width: 520px) {
+
+    .opening {
+
+        padding: 20px 15px;
+    }
+
+
+    .opening-card {
+
+        padding: 40px 20px;
+    }
+
+
+    .opening-snoopy {
+
+        width: 105px;
+    }
+
+
+    .envelope {
+
+        width: 180px;
+
+        height: 115px;
+    }
+
+
+    .envelope-top {
+
+        border-left-width: 90px;
+
+        border-right-width: 90px;
+
+        border-top-width: 62px;
+    }
+
+
+    .main-header h2 {
+
+        font-size: 39px;
+    }
+
+
+    .header-snoopy img {
+
+        width: 85px;
+    }
+
+
+    .music-player {
+
+        padding: 11px;
+    }
+
+
+    .letter {
+
+        border-radius: 19px;
+    }
+
+
+    .letter-content {
+
+        padding:
+            22px
+            20px
+            55px;
+    }
+
+
+    .letter-content p {
+
+        font-size: 15px;
+
+        line-height: 1.95;
+
+        margin-bottom: 25px;
+    }
+
+
+    .dear {
+
+        font-size: 25px !important;
+    }
+
+
+    /* Foto berubah menjadi vertikal */
+
+    .memory {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        width: 94%;
+
+        margin-top: 40px;
+
+        margin-bottom: 40px;
+
+        padding: 14px;
+    }
+
+
+    .photo {
+
+        width: min(260px, 90%);
+    }
+
+
+    .memory-caption {
+
+        text-align: center;
+
+        width: 100%;
+
+        padding-bottom: 8px;
+    }
+
+
+    .memory-caption p {
+
+        font-size: 13px;
+    }
+
+
+    .big-message {
+
+        font-size: 22px !important;
+    }
+}
+
+
+/* ==================================================
+   VERY SMALL PHONE
+================================================== */
+
+@media (max-width: 350px) {
+
+    .website {
+
+        width: 95%;
+    }
+
+
+    .letter-content {
+
+        padding-left: 17px;
+
+        padding-right: 17px;
+    }
+
+
+    .letter-content p {
+
+        font-size: 14px;
+
+        line-height: 1.9;
+    }
+
+
+    .main-header h2 {
+
+        font-size: 35px;
+    }
+
+
+    .music-details strong {
+
+        font-size: 13px;
+    }
+}
+
+/* =========================================
+   FALLING ELEMENTS
+========================================= */
+
+#falling-elements {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+
+.falling-item {
+
+    position: absolute;
+
+    top: -30px;
+
+    color: #a79889;
+
+    opacity: 0;
+
+    animation: falling linear forwards;
+}
+
+
+@keyframes falling {
+
+    0% {
+
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+
+        opacity: 0.65;
+    }
+
+    50% {
+
+        transform:
+            translateY(50vh)
+            translateX(25px)
+            rotate(120deg);
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            translateX(-30px)
+            rotate(260deg);
+
+        opacity: 0;
+    }
+}
