@@ -1,0 +1,364 @@
+SWITCH
+En
+Conf t
+Int range fa0/1-24
+Switchport mode access
+Switchport voice vlan 1
+Ex
+
+ROUTER 0 F0/0
+En
+Conf t
+Int fa0/0
+Ip address 192.168.10.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.10.1 
+Ip dhcp pool voip1 
+Network 192.168.10.0 255.255.255.0
+Default-router 192.168.10.1
+Option 150 ip 192.168.10.1
+Ex
+Telephony-service
+Ip source-address 192.168.10.1 port 2001
+Max-ephones 6
+Max-dn 6
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 1 
+Number 111
+Ephone-dn 2
+Number 112
+Ex
+Router 1 fa0/0
+En
+Conf t
+Int fa0/0
+Ip address 192.168.30.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.30.1 
+Ip dhcp pool voip1 
+Network 192.168.30.0 255.255.255.0
+Default-router 192.168.30.1
+Option 150 ip 192.168.30.1
+Ex
+Telephony-service
+Ip source-address 192.168.30.1 port 2001
+Max-ephones 6
+Max-dn 6
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 1 
+Number 311
+Ephone-dn 2
+Number 312
+Ex
+Router 2fa0/0
+En
+Conf t
+Int fa0/0
+Ip address 192.168.50.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.50.1 
+Ip dhcp pool voip1 
+Network 192.168.50.0 255.255.255.0
+Default-router 192.168.50.1
+Option 150 ip 192.168.50.1
+Ex
+Telephony-service
+Ip source-address 192.168.50.1 port 2001
+Max-ephones 6
+Max-dn 6
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 1 
+Number 511
+Ephone-dn 2
+Number 512
+Ex
+Router 3 fa0/0
+En
+Conf t
+Int fa0/0
+Ip address 192.168.70.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.70.1 
+Ip dhcp pool voip1 
+Network 192.168.70.0 255.255.255.0
+Default-router 192.168.70.1
+Option 150 ip 192.168.70.1
+Ex
+Telephony-service
+Ip source-address 192.168.70.1 port 2001
+Max-ephones 6
+Max-dn 6
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 1 
+Number 711
+Ephone-dn 2
+Number 712
+Ex
+Router 0 fao/1 + serial
+En
+Conf t
+Int fa0/1
+Ip address 192.168.20.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.20.1 
+Ip dhcp pool voip1 
+Network 192.168.20.0 255.255.255.0
+Default-router 192.168.20.1
+Option 150 ip 192.168.20.1
+Ex
+Telephony-service
+Ip source-address 192.168.20.1 port 2001
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 3 
+Number 211
+Ephone-dn 4
+Number 212
+Ex
+int se0/3/0
+ip address 10.10.10.1 255.255.255.0
+clock rate 64000
+no sh
+router rip
+version 2
+no auto-summary
+network 192.168.10.0
+network 192.168.20.0
+network 10.10.10.0
+ex
+int se0/2/0
+ip address 40.40.40.2 255.255.255.0
+no sh	
+ex
+router rip
+version 2
+no auto-summary
+network 192.168.10.0
+network 192.168.20.0
+network 40.40.40.0
+ex
+dial-peer voice 3 voip
+destination-pattern 3..
+session target ipv4:10.10.10.2
+dial-peer voice 4 voip
+destination-pattern 4..
+session target ipv4:10.10.10.2
+dial-peer voice 5 voip
+destination-pattern 5..
+session target ipv4:20.20.20.2
+dial-peer voice 6 voip
+destination-pattern 6..
+session target ipv4:20.20.20.2
+dial-peer voice 7 voip
+destination-pattern 7..
+session target ipv4:40.40.40.1
+dial-peer voice 8 voip
+destination-pattern 8..
+session target ipv4:40.40.40.1
+ex
+Router 1 fa0/1 + serial
+En
+Conf t
+Int fa0/1
+Ip address 192.168.40.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.40.1 
+Ip dhcp pool voip1 
+Network 192.168.40.0 255.255.255.0
+Default-router 192.168.40.1
+Option 150 ip 192.168.40.1
+Ex
+Telephony-service
+Ip source-address 192.168.40.1 port 2001
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 3 
+Number 411
+Ephone-dn 4
+Number 412
+Ex
+int se0/3/0
+ip address 10.10.10.2 255.255.255.0
+clock rate 64000
+no sh
+router rip
+version 2
+no auto-summary
+network 192.168.30.0
+network 192.168.40.0
+network 10.10.10.0
+ex
+int se0/2/0
+ip address 20.20.20.1 255.255.255.0
+no sh	
+ex
+router rip
+version 2
+no auto-summary
+network 192.168.30.0
+network 192.168.40.0
+network 20.20.20.0
+ex
+dial-peer voice 1 voip
+destination-pattern 1..
+session target ipv4:10.10.10.1
+dial-peer voice 2 voip
+destination-pattern 2..
+session target ipv4:10.10.10.1
+dial-peer voice 5 voip
+destination-pattern 5..
+session target ipv4:20.20.20.2
+dial-peer voice 6 voip
+destination-pattern 6..
+session target ipv4:20.20.20.2
+dial-peer voice 7 voip
+destination-pattern 7..
+session target ipv4:40.40.40.1
+dial-peer voice 8 voip
+destination-pattern 8..
+session target ipv4:40.40.40.1
+ex
+Router 2 fa0/1 + serial
+En
+Conf t
+Int fa0/1
+Ip address 192.168.60.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.60.1 
+Ip dhcp pool voip1 
+Network 192.168.60.0 255.255.255.0
+Default-router 192.168.60.1
+Option 150 ip 192.168.60.1
+Ex
+Telephony-service
+Ip source-address 192.168.60.1 port 2001
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 3 
+Number 611
+Ephone-dn 4
+Number 612
+Ex
+int se0/1/0
+ip address 20.20.20.2 255.255.255.0
+clock rate 64000
+no sh
+router rip
+version 2
+no auto-summary
+network 192.168.50.0
+network 192.168.60.0
+network 20.20.20.0
+ex
+int se0/3/0
+ip address 30.30.30.1 255.255.255.0
+no sh	
+ex
+router rip
+version 2
+no auto-summary
+network 192.168.50.0
+network 192.168.60.0
+network 30.30.30.0
+ex
+dial-peer voice 1 voip
+destination-pattern 1..
+session target ipv4:10.10.10.1
+dial-peer voice 2 voip
+destination-pattern 2..
+session target ipv4:10.10.10.1
+dial-peer voice 3 voip
+destination-pattern 3..
+session target ipv4:20.20.20.1
+dial-peer voice 4 voip
+destination-pattern 4..
+session target ipv4:20.20.20.1
+dial-peer voice 7 voip
+destination-pattern 7..
+session target ipv4:30.30.30.2
+dial-peer voice 8 voip
+destination-pattern 8..
+session target ipv4:30.30.30.2
+ex
+Router 3 fa0/1 + serial
+En
+Conf t
+Int fa0/0
+Ip address 192.168.80.1 255.255.255.0
+No sh
+Ex
+Ip dhcp excluded-address 192.168.80.1 
+Ip dhcp pool voip1 
+Network 192.168.80.0 255.255.255.0
+Default-router 192.168.80.1
+Option 150 ip 192.168.80.1
+Ex
+Telephony-service
+Ip source-address 192.168.80.1 port 2001
+Auto assign 1 to 6
+Ex
+Telephony-service
+Ephone-dn 3 
+Number 811
+Ephone-dn 4
+Number 812
+Ex
+int se0/1/0
+ip address 30.30.30.2 255.255.255.0
+clock rate 64000
+no sh
+router rip
+version 2
+no auto-summary
+network 192.168.70.0
+network 192.168.80.0
+network 30.30.30.0
+ex
+int se0/3/0
+ip address 40.40.40.1 255.255.255.0
+no sh	
+ex
+router rip
+version 2
+no auto-summary
+network 192.168.70.0
+network 192.168.80.0
+network 40.40.40.0
+ex
+dial-peer voice 1 voip
+destination-pattern 1..
+session target ipv4:40.40.40.2
+dial-peer voice 2 voip
+destination-pattern 2..
+session target ipv4:40.40.40.2
+dial-peer voice 3 voip
+destination-pattern 3..
+session target ipv4:20.20.20.1
+dial-peer voice 4 voip
+destination-pattern 4..
+session target ipv4:20.20.20.1
+dial-peer voice 5 voip
+destination-pattern 5..
+session target ipv4:30.30.30.1
+dial-peer voice 6 voip
+destination-pattern 6..
+session target ipv4:30.30.30.1
+ex
